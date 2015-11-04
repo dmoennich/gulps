@@ -20,3 +20,17 @@ gulp.task("default", () => {
 });
 
 
+gulp.task("react", () => {
+
+    return browserify({
+        entries: ["./browser/js/main.js"],
+        debug: true // add source map
+    }).transform(babelify, {presets: ["es2015", "react"]})
+        .bundle()
+        .pipe(source("main-bundle.js"))
+        .pipe(gulp.dest("./dist/js"));
+
+
+});
+
+
